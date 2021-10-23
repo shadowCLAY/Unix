@@ -1,0 +1,9 @@
+Trong thử thách trước, chúng tôi đã kiểm tra `.bash_history` của một người dùng. 
+Trên hầu hết các hệ thống, bạn sẽ có nhiều người dùng hơn và bạn sẽ cần phải làm việc nhanh hơn.
+
+Để làm điều này, chúng ta có thể sử dụng lệnh `find`. 
+Chúng ta có thể yêu cầu `find` tìm kiếm tất cả các tệp có tên .bash_history trong thư mục` / home`:
+
+find / home -name .bash_history
+
+Từ đó, bạn sẽ có thể lấy lại khóa như trong bài tập trước.
