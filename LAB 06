@@ -1,0 +1,7 @@
+Trong thử thách trước, chúng tôi đã kiểm tra `.bashrc` và tìm thấy một bí danh có chứa khóa.
+
+Trong thử thách này, khóa được xác định trong một biến môi trường bằng lệnh `export`. 
+
+Điều này sẽ cho phép người dùng nhập `$PTLAB_KEY` thay vì khóa mỗi khi họ cần sử dụng khóa.
+
+find /home -name .bashrc -exec grep export {} \; | grep -v NAME
