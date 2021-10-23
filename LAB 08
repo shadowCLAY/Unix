@@ -1,17 +1,20 @@
 find /home -name .bashrc -exec grep [PATTERN] {} \;
 
-find /home -name .bashrc -exec grep export {} \; | grep -v NAME
 
 
-
-
-                                                              Lab 08:
 Trong các thử thách trước, tất cả người dùng đều có thư mục chính của họ trong / home (điều này rất phổ biến). 
+
 Tuy nhiên, không phải lúc nào cũng vậy (đặc biệt là đối với các tài khoản dịch vụ). 
+
 Trong thử thách này, thư mục chính của một trong những người dùng không ở trong / home. 
+
 Bạn có thể tìm thấy vị trí của thư mục chính này bằng cách kiểm tra / etc / passwd.
-Khi bạn tìm thấy người dùng có thư mục chính bên ngoài / home. Bạn sẽ có thể tìm thấy chìa khóa bằng cách sử dụng một trong các phương pháp đã thấy 
+
+Khi bạn tìm thấy người dùng có thư mục chính bên ngoài / home. 
+
+Bạn sẽ có thể tìm thấy chìa khóa bằng cách sử dụng một trong các phương pháp đã thấy 
 trong các thử thách trước.
+
             cat /etc/passwd 
               ls -la ( "la" tìm all thư mục ẩn )
              
