@@ -1,0 +1,25 @@
+Trong thử thách này, người dùng `root` đã để lại một tệp có tên là` backup.tgz` trong `/tmp`. 
+Quản trị viên thường để các tệp trong `/tmp` vì` /tmp`được dọn dẹp sau mỗi lần khởi động lại. 
+Nó thường được sử dụng khi bạn không muốn giữ các tệp đang làm việc hoặc là nơi để chia sẻ tệp 
+(vì bất kỳ ai cũng có thể viết trong thư mục đó trên hầu hết các hệ thống). Do đó, điều thực sự quan trọng khi kiểm tra hoặc 
+giành quyền truy cập vào hệ thống để xem bạn có thể tìm thấy những tệp nào trong `/tmp`.
+
+Nếu bạn nhìn vào các quyền, trên thư mục:
+$ ls -ld /tmp
+drwxrwxrwt   1 root root   4096 Mar 12 12:54 tmp
+
+$ ls /tmp
+$ cd /tmp 
+$ file backup.tgz
+$ tar -zxvf backup.tgz
+
+Bạn có thể thấy rằng:
+* `tmp` là một thư mục vì dòng bắt đầu bằng` d`
+* `tmp` có sẵn ở chế độ đọc, ghi, thực thi cho mọi người.
+* `tmp` có bộ bit dính: dấu` t` ở cuối quyền.
+
+Bit dính chỉ cho phép người dùng đã tạo tệp trong thư mục này (hoặc chủ sở hữu của thư mục, tức là: `root`) sửa đổi tệp này.
+
+Dựa trên phần mở rộng tệp (tgz), tệp là tệp lưu trữ `tar` đã được nén bằng cách sử dụng` gzip`. 
+Nếu bạn giải nén kho lưu trữ, bạn sẽ tìm thấy một tệp có chứa khóa.
+( Please make sure you remove (rm) the file you created when you decompressed the file  )
