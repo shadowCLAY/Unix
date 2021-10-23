@@ -1,0 +1,79 @@
+find /home -name .bashrc -exec grep [PATTERN] {} \;
+
+find /home -name .bashrc -exec grep export {} \; | grep -v NAME
+
+
+
+
+                                                              Lab 08:
+Trong các thử thách trước, tất cả người dùng đều có thư mục chính của họ trong / home (điều này rất phổ biến). 
+Tuy nhiên, không phải lúc nào cũng vậy (đặc biệt là đối với các tài khoản dịch vụ). 
+Trong thử thách này, thư mục chính của một trong những người dùng không ở trong / home. 
+Bạn có thể tìm thấy vị trí của thư mục chính này bằng cách kiểm tra / etc / passwd.
+Khi bạn tìm thấy người dùng có thư mục chính bên ngoài / home. Bạn sẽ có thể tìm thấy chìa khóa bằng cách sử dụng một trong các phương pháp đã thấy 
+trong các thử thách trước.
+            cat /etc/passwd 
+              ls -la ( "la" tìm all thư mục ẩn )
+             
+             
+             
+             
+             
+             
+                                                              Lab 09:           
+Trong các thử thách trước, chúng tôi đã kiểm tra .bash_history của người dùng. Một cách nhanh chóng để tìm mật khẩu là tìm kiếm lỗi sau: 
+mọi người nhập mật khẩu của họ vào trình bao thay vì lời nhắc mật khẩu. 
+Bằng cách đó, mật khẩu của họ sẽ có sẵn trong các tệp lịch sử.
+Ở đây, để làm cho mọi thứ trở nên đơn giản, mật khẩu là chìa khóa.
+
+Những gì chúng tôi muốn tìm là tất cả các dòng có lệnh gọi đến lệnh passwd:
+$ grep passwd .bash_history
+
+Tuy nhiên, điều này chỉ cung cấp cho chúng tôi lệnh gọi passwd. Rất may, chúng tôi có thể yêu cầu grep cung cấp cho chúng tôi dòng sau bằng cách sử dụng:
+grep -A 1 passwd .bash_history
+
+Cuối cùng, chúng ta có thể kết thúc điều này bằng một lệnh find:
+find / home -name .bash_history -exec grep -A 1 passwd {} \;
+
+Thật không may, chúng tôi nhận được quá nhiều kết quả vì grep của chúng tôi cũng khớp với các dòng chứa /etc/passwd. 
+Chúng ta có thể yêu cầu grep chỉ khớp với dòng bắt đầu bằng passwd bằng cách sử dụng ^:
+find . -name .bash_history -exec grep -A 1 '^passwd' {} \;
+
+Từ đó, bạn sẽ có thể lấy lại khóa như trong các bài tập trước.
+
+
+
+
+
+
+
+
+
+                                                               Lab 10:     
+Trong thử thách này, người dùng `root` đã để lại một tệp có tên là` backup.tgz` trong `/tmp`. 
+Quản trị viên thường để các tệp trong `/tmp` vì` /tmp`được dọn dẹp sau mỗi lần khởi động lại. 
+Nó thường được sử dụng khi bạn không muốn giữ các tệp đang làm việc hoặc là nơi để chia sẻ tệp 
+(vì bất kỳ ai cũng có thể viết trong thư mục đó trên hầu hết các hệ thống). Do đó, điều thực sự quan trọng khi kiểm tra hoặc 
+giành quyền truy cập vào hệ thống để xem bạn có thể tìm thấy những tệp nào trong `/tmp`.
+
+Nếu bạn nhìn vào các quyền, trên thư mục:
+$ ls -ld /tmp
+drwxrwxrwt   1 root root   4096 Mar 12 12:54 tmp
+
+$ ls /tmp
+$ cd /tmp 
+$ file backup.tgz
+$ tar -zxvf backup.tgz
+
+Bạn có thể thấy rằng:
+* `tmp` là một thư mục vì dòng bắt đầu bằng` d`
+* `tmp` có sẵn ở chế độ đọc, ghi, thực thi cho mọi người.
+* `tmp` có bộ bit dính: dấu` t` ở cuối quyền.
+
+Bit dính chỉ cho phép người dùng đã tạo tệp trong thư mục này (hoặc chủ sở hữu của thư mục, tức là: `root`) sửa đổi tệp này.
+
+Dựa trên phần mở rộng tệp (tgz), tệp là tệp lưu trữ `tar` đã được nén bằng cách sử dụng` gzip`. 
+Nếu bạn giải nén kho lưu trữ, bạn sẽ tìm thấy một tệp có chứa khóa.
+( Please make sure you remove (rm) the file you created when you decompressed the file  )
+
+
