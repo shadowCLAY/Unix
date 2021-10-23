@@ -1,0 +1,10 @@
+Khi sử dụng hệ thống Unix, việc ghi nhớ những lệnh bạn đã chạy là rất tiện lợi. 
+Để làm điều đó, hầu hết các shell (nơi bạn nhập lệnh) giữ một tệp có danh sách các lệnh trước đó. Ở đây nạn nhân đang sử dụng `bash`.
+Shell `bash` sử dụng tệp` .bash_history` trong thư mục chính của người dùng đang chạy các lệnh. 
+Thực tế là tên tệp bắt đầu bằng dấu chấm `.` chỉ ra rằng đó là một tệp ẩn.
+
+Rõ ràng, danh sách các lệnh trước đó do nạn nhân chạy có thể chứa thông tin thú vị. Tại đây, chúng tôi có thể truy cập vào tệp này bằng cách:
+   + Đi tới thư mục chính của `nạn nhân`.
+   + Liệt kê nội dung của thư mục này bằng cách sử dụng `ls -a` (tùy chọn `-a` sẽ hiển thị các tệp ẩn).
+   + Đọc nội dung của tệp bằng cách sử dụng `cat` và cố gắng tìm thứ gì đó trông giống như một chiếc chìa khóa.
+
