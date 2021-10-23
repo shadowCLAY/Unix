@@ -1,0 +1,19 @@
+Trong thử thách này, bạn sẽ tìm hiểu về tệp `.bashrc`. 
+Tệp này được tải khi người dùng bắt đầu một trình bao mới. 
+Nó thường được sử dụng để cấu hình shell hoặc để tải một số thông tin. 
+              Ví dụ: bạn có thể sử dụng nó để xác định bí danh cho lệnh hoặc để lưu một số biến.
+
+
+Để tìm các tệp `.bashrc` mà chúng tôi có quyền truy cập, chúng tôi có thể sử dụng lệnh` find`. 
+Chúng ta có thể yêu cầu `find` tìm kiếm tất cả các tệp có tên `.bashrc` trong thư mục `/home`:
+              find /home -name .bashrc
+              
+              
+Từ đó, bạn sẽ có thể lấy lại khóa như trong các bài tập trước bằng cách xem tất cả các tệp. 
+Thật không may, điều này không hiệu quả. 
+Khóa được sử dụng trong một lệnh để xác định bí danh sẽ cho phép người dùng chỉ cần nhập `check` thay vì lệnh đầy đủ (giả mạo) `check_ptlab_key ....`
+Sử dụng đối số `-exec` của lệnh `find` bạn sẽ có thể tìm kiếm các từ khóa `check`:
+              find /home -name .bashrc -exec grep [PATTERN] {} \;
+              
+Trong đó `[PATTERN]` sẽ được thay thế bằng mẫu bạn đang tìm kiếm.
+Trong quá trình đánh giá, điều quan trọng là phải nhìn vào `.bash_profile` được tải khi người dùng đăng nhập qua bảng điều khiển.
