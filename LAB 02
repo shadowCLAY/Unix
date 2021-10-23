@@ -1,0 +1,8 @@
+Thử thách này rất giống với bài tập trước. 
+
+Sự khác biệt chính là các quyền được đặt trên thư mục `victim`. 
+
+Lần này, bạn sẽ không thể liệt kê nội dung của thư mục `/home/victim`. 
+
+Nhưng bạn vẫn có thể sử dụng `cat` để lấy nội dung của tệp `key.txt`.
+
