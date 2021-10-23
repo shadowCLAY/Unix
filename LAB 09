@@ -1,0 +1,19 @@
+Trong các thử thách trước, chúng tôi đã kiểm tra .bash_history của người dùng. Một cách nhanh chóng để tìm mật khẩu là tìm kiếm lỗi sau: 
+mọi người nhập mật khẩu của họ vào trình bao thay vì lời nhắc mật khẩu. 
+Bằng cách đó, mật khẩu của họ sẽ có sẵn trong các tệp lịch sử.
+Ở đây, để làm cho mọi thứ trở nên đơn giản, mật khẩu là chìa khóa.
+
+Những gì chúng tôi muốn tìm là tất cả các dòng có lệnh gọi đến lệnh passwd:
+$ grep passwd .bash_history
+
+Tuy nhiên, điều này chỉ cung cấp cho chúng tôi lệnh gọi passwd. Rất may, chúng tôi có thể yêu cầu grep cung cấp cho chúng tôi dòng sau bằng cách sử dụng:
+grep -A 1 passwd .bash_history
+
+Cuối cùng, chúng ta có thể kết thúc điều này bằng một lệnh find:
+find / home -name .bash_history -exec grep -A 1 passwd {} \;
+
+Thật không may, chúng tôi nhận được quá nhiều kết quả vì grep của chúng tôi cũng khớp với các dòng chứa /etc/passwd. 
+Chúng ta có thể yêu cầu grep chỉ khớp với dòng bắt đầu bằng passwd bằng cách sử dụng ^:
+find . -name .bash_history -exec grep -A 1 '^passwd' {} \;
+
+Từ đó, bạn sẽ có thể lấy lại khóa như trong các bài tập trước.
