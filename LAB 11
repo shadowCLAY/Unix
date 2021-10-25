@@ -1,0 +1,14 @@
+Trong thử thách này, người dùng root đã để lại một tệp có tên là `backup.tbz` trong `/var/tmp`.
+Quản trị viên thường để tệp trong `/var/tmp`. 
+Thư mục `/var/tmp` không được dọn dẹp sau mỗi lần khởi động lại.
+
+
+Dựa trên phần mở rộng của tệp (tbz), tệp là tệp lưu trữ `tar` đã được nén bằng cách sử dụng` bzip`. 
+Nếu bạn giải nén kho lưu trữ, bạn sẽ tìm thấy một tệp có chứa khóa.
+
+
+ls /var/tmp
+cd /var/tmp
+ls
+file NAME.file
+tar -jxvf NAME.file
