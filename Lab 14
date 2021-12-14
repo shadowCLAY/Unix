@@ -1,0 +1,28 @@
+In this challenge, the user root created a backup of the home directory of users. Find it and extract the content based on previous exercises.
+
+Once you have the content, you should be able to become the user victim by using the command su:
+
+$ su victim
+
+Finally, since you're the user victim. You should be able to access the key in this user's home directory.
+
+
+cd /tmp
+ls
+ls -lah
+cd /var/tmp
+ls
+file backup
+gunzip backup
+ls -ltrh
+cp backup test.gz
+gunzip test.gz
+ls -ltrh
+file test
+tar xvf test 
+    Lay passwd
+
+su victim
+cd /var/tmp
+cd
+ls
