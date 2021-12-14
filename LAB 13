@@ -1,0 +1,28 @@
+Trong thử thách này, người dùng root chạy một tập lệnh hàng ngày bằng cách sử dụng cron. 
+Tập lệnh này được sử dụng để sao lưu thư mục chính của người dùng.
+
+Để điều hành công việc một cách thường xuyên (hàng ngày, hàng tuần, 5 phút một lần), quản trị viên hệ thống sử dụng cron. 
+Tùy thuộc vào hệ thống, nhiều công cụ có thể được sử dụng crontab, anacron ... 
+Tại đây bạn có thể tìm thấy các công việc cron chạy hàng ngày trong /etc/cron.daily/.
+
+Nếu bạn kiểm tra nội dung của tệp được sử dụng để sao lưu, 
+bạn sẽ thấy rằng một khóa là một phần của tập lệnh để mã hóa nội dung (sử dụng mã hóa đối xứng). 
+Sử dụng thông tin này, bạn sẽ có thể giải mã và giải nén bản sao lưu để lấy nội dung của nó.
+
+N.B: Ở đây, mã hóa không đối xứng nên được sử dụng.
+Hơn nữa, nội dung của tar phải được chuyển trực tiếp (via|) tới openssl để mã hóa nhằm tránh việc lưu trữ không được mã hóa có sẵn trên hệ thống tệp.
+
+
+
+cd /etc/cron.daily/
+ls
+cat backup
+      #!/bin/bash
+      tar -zcvf /tmp/backup.tgz /home/victim
+      openssl enc -aes256 -k P3NT35T3RL48 -in /tmp/backup.tgz  -out /tmp/backup.tgz.enc
+      rm /tmp/backup.tgz
+
+cd
+cd /tmp
+openssl enc -d -aes256 -k P3NT35T3RL48 -in backup.tgz.enc  -out newNAME.tgz
+tar -zxvf newNAME.tgz
