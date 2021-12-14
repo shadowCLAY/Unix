@@ -1,0 +1,9 @@
+cd /var or cd /tmp
+ls
+file backup.bz2
+bunzip2 backup.bz2
+
+ls -ltrh
+file backup: cpio archive
+cpio -idv --no-absolute-filename < backup
+cat ......
